@@ -20,6 +20,15 @@
 			return to + content + to;
 		});
 
+		// multi-level bulleted lists
+		input = input.replace(/^( \t*)- (.*)$/gm, function (match,level,content) {
+			var len = 2;
+			if(level.length > 0) {
+				len = parseInt(level.length/4.0) + 2;
+			}
+			return Array(len).join("  ") + content;
+		});
+
 		// multi-level numbered list
 		input = input.replace(/^((?:#|-|\+|\*)+) (.*)$/gm, function (match, level, content) {
 			var len = 2;
